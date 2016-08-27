@@ -1,38 +1,38 @@
-float x, y, xSpd, ySpd, ballWidth, ballHeight,ball_x,ball_y;
+float xPos, yPos, ballSize, spdChange, xSpd, ySpd; 
 
 void setup()
 {
   background(250);
   size(500,500);
   noLoop();
-  ballWidth = 100;
-  ballHeight = 100;
-  xSpd = 10;//((int)random(-20,20));
-  ySpd = -10;//((int)random(-20, 20));
-  x = 250;
-  y = 250;
- 
+  xPos = width/2;
+  yPos = height/2;
+  ballSize = 100;
+  spdChange = 10;
+  xSpd = 15;
+  ySpd = 15;
 }
 
 void draw()
 {
   fill(random(255),random(255),random(255),random(255));
-  x = x + xSpd;
-  y = y + ySpd;
+  xPos = xPos + xSpd;
+  yPos = yPos + ySpd;
   
-  if(y < 0){
-  	ySpd = 10;
+  
+  if (xPos + ballSize > width){
+  	xSpd = -1 * spdChange;
   }
-  if (y < 0){
-  	ySpd = -10;
+  if (xPos < 0){
+    xSpd = spdChange;
   }
-  if (x > 0) {
-  	xSpd = -10;
+  if (yPos + ballSize > height) {
+     ySpd = -1 * spdChange;
   }
-  if(x < 0){
-  	xSpd = 10;
+  if (yPos < 0){
+      ySpd = spdChange;
   }
-  ellipse(x, y, ballWidth, ballHeight);
+  ellipse(xPos, yPos, ballSize, ballSize);
 }
  
  void mousePressed()
